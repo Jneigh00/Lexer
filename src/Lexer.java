@@ -685,11 +685,11 @@ class Lexer {
             }
           case 45: break;
           case 5: 
-            { System.out.println(""); lineno++; /* skip */
+            { System.out.println(""); lineno++; column = 1; /* skip */
             }
           case 46: break;
           case 6: 
-            { /* skip */
+            { System.out.print(yytext()); column += (yytext().length()); /* skip */
             }
           case 47: break;
           case 7: 
@@ -779,7 +779,8 @@ class Lexer {
           case 28: 
             { System.out.println("block comment begin \""           );
                                       System.out.println(yytext()                           );
-                                      System.out.println("\" block comment end"             ); /* skip */
+                                      System.out.println("\" block comment end"             );
+                                       lineno++;                                                   /* skip */
             }
           case 69: break;
           case 29: 
