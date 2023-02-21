@@ -33,7 +33,8 @@ identifier  = [a-zA-Z][a-zA-Z0-9_]*
 newline     = \n
 whitespace  = [ \t\r]+
 linecomment = "##".*
-blockcomment= "#{"(.|\n)*"}#"
+blockcomment=  "#{"([^]|\n)*"}#"
+defines =    "#define"
 
 %%
 
@@ -88,8 +89,8 @@ blockcomment= "#{"(.|\n)*"}#"
 {newline}                           { System.out.print(yytext()); lineno++; column = 1; /* skip */ }
 {whitespace}                        { System.out.print(yytext()); column += yytext().length(); /* skip */ }
 {blockcomment}                      { System.out.print(yytext());String[] skipLines = yytext().split("\n");
-                                       lineno+= skipLines.length -1;                                                   /* skip */ }
-
+                                       lineno+= skipLines.length -1; column+=2;                      /* skip */ }
+"#define" =                         { parser.yylval = new ParserVal((Object)yytext()); System.out.println("Works"); return Parser.DEF;}
 
 \b     { System.err.println("Sorry, backspace doesn't work"); }
 

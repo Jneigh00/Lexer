@@ -37,6 +37,8 @@ public class Parser
     public static final int FLOAT_LIT   = 44; // {float}
     public static final int IDENT       = 45; // {identifier}
 
+    public static final int DEF         = 50;
+
     public Parser(java.io.Reader r, Compiler compiler) throws Exception
     {
         this.compiler = compiler;

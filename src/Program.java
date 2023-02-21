@@ -11,7 +11,7 @@ public class Program {
         //+"}\n"
         //);
 
-        args = new String[] { "test/test6.minc" };
+        args = new String[] { "test/test0.minc" };
         if(args.length <= 0)
             return;
 
