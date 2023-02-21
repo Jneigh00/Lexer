@@ -669,7 +669,7 @@ class Lexer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { System.err.println("Error: unexpected character '"+yytext()+"'"); return -1;
+            { System.err.println("Error: unexpected character '"+yytext()+"'" + " at " + lineno + ":" + column); return -1;
             }
           case 42: break;
           case 2: 
@@ -685,11 +685,11 @@ class Lexer {
             }
           case 45: break;
           case 5: 
-            { System.out.println(""); lineno++; /* skip */
+            { System.out.println(""); lineno++; column = 1; /* skip */
             }
           case 46: break;
           case 6: 
-            { /* skip */
+            { System.out.print(yytext()); column += (yytext().length()); /* skip */
             }
           case 47: break;
           case 7: 
@@ -745,7 +745,7 @@ class Lexer {
             }
           case 60: break;
           case 20: 
-            { System.out.println("line comment: \""   +yytext()+"\""); /* skip */
+            { System.out.print(" "+yytext()); /* skip */
             }
           case 61: break;
           case 21: 
@@ -777,9 +777,8 @@ class Lexer {
             }
           case 68: break;
           case 28: 
-            { System.out.println("block comment begin \""           );
-                                      System.out.println(yytext()                           );
-                                      System.out.println("\" block comment end"             ); /* skip */
+            { String[] skipLines = yytext().split("\n");
+                                       lineno+= skipLines.length -1;                                                   /* skip */
             }
           case 69: break;
           case 29: 

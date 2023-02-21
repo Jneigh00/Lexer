@@ -43,28 +43,28 @@ blockcomment= "#{"(.|\n)*"}#"
 "bool"                              { parser.yylval = new ParserVal((Object)yytext()); return Parser.BOOL   ; }
 "float"                             { parser.yylval = new ParserVal((Object)yytext()); return Parser.FLOAT   ; }
 "struct"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.STRUCT   ; }
-"size"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.SIZE   ; }
-"new"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.NEW   ; }
-"if"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.IF   ; }
-"else"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.ELSE   ; }
-"while"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.WHILE   ; }
+"size"                              { parser.yylval = new ParserVal((Object)yytext()); return Parser.SIZE   ; }
+"new"                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.NEW   ; }
+"if"                                { parser.yylval = new ParserVal((Object)yytext()); return Parser.IF   ; }
+"else"                              { parser.yylval = new ParserVal((Object)yytext()); return Parser.ELSE   ; }
+"while"                             { parser.yylval = new ParserVal((Object)yytext()); return Parser.WHILE   ; }
 "return"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.RETURN   ; }
-"break"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.BREAK   ; }
-"continue"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.CONTINUE   ; }
-"true"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.BOOL_LIT   ; }
-"false"                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.BOOL_LIT   ; }
+"break"                             { parser.yylval = new ParserVal((Object)yytext()); return Parser.BREAK   ; }
+"continue"                          { parser.yylval = new ParserVal((Object)yytext()); return Parser.CONTINUE   ; }
+"true"                              { parser.yylval = new ParserVal((Object)yytext()); return Parser.BOOL_LIT   ; }
+"false"                             { parser.yylval = new ParserVal((Object)yytext()); return Parser.BOOL_LIT   ; }
 "["                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.LBRACKET   ; }
 "]"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RBRACKET   ; }
-","                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.COMMA   ; }
-"."                            { parser.yylval = new ParserVal((Object)yytext()); return Parser.DOT   ; }
+","                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.COMMA   ; }
+"."                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.DOT   ; }
 "&"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.ADDR   ; }
 "&"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.ADDR   ; }
 "-"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP   ; }
 "*"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP   ; }
 "/"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP   ; }
-"and"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP   ; }
-"or"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP   ; }
-"not"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP   ; }
+"and"                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP   ; }
+"or"                                { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP   ; }
+"not"                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP   ; }
 "func"                              { parser.yylval = new ParserVal((Object)yytext()); return Parser.FUNC    ; }
 "int"                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.INT     ; }
 "{"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.BEGIN   ; }
@@ -77,22 +77,21 @@ blockcomment= "#{"(.|\n)*"}#"
 "+"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP      ; }
 "<"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
 "="                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
-"!="                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
+"!="                                { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
 ">"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
-"<="                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
-">="                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
+"<="                                { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
+">="                                { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
 {int}                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.INT_LIT ; }
-{float}                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.FLOAT_LIT ; }
+{float}                             { parser.yylval = new ParserVal((Object)yytext()); return Parser.FLOAT_LIT ; }
 {identifier}                        { parser.yylval = new ParserVal((Object)yytext()); return Parser.IDENT   ; }
-{linecomment}                       { System.out.println("line comment: \""   +yytext()+"\""); /* skip */ }
-{newline}                           { System.out.println(""); lineno++; /* skip */ }
-{whitespace}                        {     /* skip */ }
-{blockcomment}                      { System.out.println("block comment begin \""           );
-                                      System.out.println(yytext()                           );
-                                      System.out.println("\" block comment end"             ); /* skip */ }
+{linecomment}                       { System.out.print(" "+yytext()); /* skip */ }
+{newline}                           { System.out.println(""); lineno++; column = 1; /* skip */ }
+{whitespace}                        { System.out.print(yytext()); column += (yytext().length()); /* skip */ }
+{blockcomment}                      {System.out.println(yytext());String[] skipLines = yytext().split("\n");
+                                       lineno+= skipLines.length -1;                                                   /* skip */ }
 
 
 \b     { System.err.println("Sorry, backspace doesn't work"); }
 
 /* error fallback */
-[^]    { System.err.println("Error: unexpected character '"+yytext()+"'"); return -1; }
+[^]    { System.err.println("Error: unexpected character '"+yytext()+"'" + " at " + lineno + ":" + column); return -1; }
