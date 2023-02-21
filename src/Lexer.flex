@@ -84,14 +84,14 @@ blockcomment= "#{"(.|\n)*"}#"
 {int}                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.INT_LIT ; }
 {float}                             { parser.yylval = new ParserVal((Object)yytext()); return Parser.FLOAT_LIT ; }
 {identifier}                        { parser.yylval = new ParserVal((Object)yytext()); return Parser.IDENT   ; }
-{linecomment}                       { System.out.println("line comment: \""   +yytext()+"\""); /* skip */ }
+{linecomment}                       { System.out.print(" "+yytext()); /* skip */ }
 {newline}                           { System.out.println(""); lineno++; column = 1; /* skip */ }
 {whitespace}                        { System.out.print(yytext()); column += (yytext().length()); /* skip */ }
-{blockcomment}                      {System.out.println(yytext()                           );
-                                       lineno++;                                                   /* skip */ }
+{blockcomment}                      {System.out.println(yytext());String[] skipLines = yytext().split("\n");
+                                       lineno+= skipLines.length -1;                                                   /* skip */ }
 
 
 \b     { System.err.println("Sorry, backspace doesn't work"); }
 
 /* error fallback */
-[^]    { System.err.println("Error: unexpected character '"+yytext()+"'"); return -1; }
+[^]    { System.err.println("Error: unexpected character '"+yytext()+"'" + " at " + lineno + ":" + column); return -1; }

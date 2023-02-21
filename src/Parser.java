@@ -230,43 +230,43 @@ public class Parser
             if(token == 40)
             {
                 attrString = "OP";
-                System.out.print("< " + attrString + ", " + lexer.lineno + ":" + lexer.column + ">");
+                System.out.print("< " + attrString + ", " + "attr: \"" + attr + "\" " + lexer.lineno + ":" + lexer.column+ ">");
                 lexer.column += attr.toString().length();
             }
             if(token == 41)
             {
                 attrString = "RELOP";
-                System.out.print("< " + attrString + ", " + lexer.lineno + ":" + lexer.column + ">");
+                System.out.print("< " + attrString + ", " + "attr: \"" + attr + "\" " + lexer.lineno + ":" + lexer.column + ">");
                 lexer.column += attr.toString().length();
             }
             if(token == 42)
             {
-                attrString = "BOOL_LIT";
-                System.out.print("< " + attrString + ", " + lexer.lineno + ":" + lexer.column + ">");
+                attrString = "BOOL_VALUE";
+                System.out.print("< " + attrString + ", " + "attr: \"" + attr + "\" " + lexer.lineno + ":" + lexer.column + ">");
                 lexer.column += attr.toString().length();
             }
             if(token == 43)
             {
                 lexer.column += attr.toString().length();
-                attrString = "INT_LIT";
-                System.out.print("< " + attrString + ", " + lexer.lineno + ":" + lexer.column + ">");
+                attrString = "INT_VALUE";
+                System.out.print("< " + attrString + ", " + "attr: \"" + attr + "\" " + lexer.lineno + ":" + (lexer.column -1) + ">");
             }
             if(token == 44)
             {
-                attrString = "FLOAT_LIT";
-                System.out.print("< " + attrString + ", " + lexer.lineno + ":" + lexer.column + ">");
+                attrString = "FLOAT_VALUE";
+                System.out.print("< " + attrString + ", " + "attr: \"" + attr + "\" " + lexer.lineno + ":" + lexer.column + ">");
                 lexer.column += attr.toString().length();
             }
             if(token == 45)
             {
                 attrString = "IDENT";
                 if(symbolTable.containsKey(attr.toString())){
-                    System.out.print("< ID, attr:sym-id: " + symbolTable.get(attr.toString()) + "," + lexer.lineno + ":" + lexer.column + ">" );
+                    System.out.print("< ID, attr:sym-id: " + symbolTable.get(attr.toString()) + ", " + lexer.lineno + ":" + lexer.column + ">" );
                 }
                 else{
                     symbolTable.put(attr.toString(), currSymID);
                     System.out.print("<<new symbol table entity [" + currSymID +", \"" + attr.toString() + "\"]>>");
-                    System.out.print("<ID, attr:sym-id: " + symbolTable.get(attr.toString()) + "," + lexer.lineno + ":" + lexer.column + ">" );
+                    System.out.print("<ID, attr:sym-id: " + symbolTable.get(attr.toString()) + ", " + lexer.lineno + ":" + lexer.column + ">" );
                     currSymID++;
 
                 }
@@ -280,6 +280,7 @@ public class Parser
             if(token == -1)
             {
                 // error
+                System.out.println("");
                 return -1;
             }
 
